@@ -2,11 +2,13 @@
 
 require_once 'AppController.php';
 require_once __DIR__.'/../models/User.php';
+require_once __DIR__.'/../repository/UserRepository.php';
 
-class SecurityContrller extends AppController{
+class SecurityController extends AppController{
     public function login()
     {
-        $user = new User('johnsnow@pk.edu.pl', 'johnsnow123', 'John', 'Snow'); 
+        //$user = new User('johnsnow@pk.edu.pl', 'johnsnow123', 'John'); 
+        $userRepository = new UserRepository();
 
         if(!$this->isPost()){
             return $this->render('login');
@@ -14,18 +16,24 @@ class SecurityContrller extends AppController{
 
         $email = $_POST["email"];
         $password = $_POST["password"];
+
+        $user = $userRepository->getUser($email);
+
+        if(!$user){
+            return $this->render( 'login', ['messages' => ['User does not exist']]);
+        }
         
         if($user -> getEmail() !== $email){
             return $this->render( 'login', ['messages' => ['User with this email does not exist']]);
         }
 
-        if($user -> getPassword !== $password){
+        if($user -> getPassword() !== $password){
             return $this->render( 'login',['messages' => ['Wrong password']]);
         } 
 
-        //return $this->render('projects')
-        $url = "http://$_SERVER[HTTP_HOST]";
-        header("locations ($url)/projects");
+        return $this->render('projects');
+        //$url = "http://$_SERVER[HTTP_HOST]";
+        //header("Location: {$url}/projects");
     }
 
 }

@@ -1,0 +1,42 @@
+body {
+    margin: 0;
+}
+.container {
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(180deg, rgba(69, 236, 42, 0.60) 0%, rgba(106, 255, 139, 0.90) 100%);
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo {
+    width: 50%; 
+    text-align: center;
+}
+
+.login-container {
+    width: 50%;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    height: 40vh;
+    
+}
+
+button {
+    background: linear-gradient(180deg, #F95656 0%, #93381B 100%);
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25), 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    width: 25%;
+    border: none;
+    color: white;
+    margin: 1em;
+    line-height: 2.5em;
+}

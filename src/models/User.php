@@ -1,15 +1,15 @@
 <?php
-class Dane{
+class User{
     private $email;
     private $password;
     private $name;
-    private $surname;
+    private $profile_picture;
 
-    public function __construct(string $email,string $password,string $name,string $surname){
+    public function __construct(string $email,string $password,string $name,string $profile_picture){
         $this->email = $email;
         $this->password = $password;
         $this->name = $name;
-        $this->surname = $surname;
+        $this->profile_picture = $profile_picture;
     }
 
     public function getEmail():string
@@ -39,13 +39,13 @@ class Dane{
         $this->name = $name;
     }
 
-    public function getSurname():string
+    public function getProfile_picture():string
     {
-        return $this->surname;
+        return $this->profile_picture;
     }
-    public function setSurname(string $surname)
+    public function setProfile_picture(string $profile_picture)
     {
-        $this->surname = $surname;
+        $this->profile_picture = $profile_picture;
     }
 
 }
