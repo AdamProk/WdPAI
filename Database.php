@@ -3,6 +3,7 @@ require_once 'config.php';
 
 class DATABASE
 {
+    private static $_instance;
     private $username;
     private $password;
     private $host;
@@ -15,7 +16,19 @@ class DATABASE
         $this->host = HOST;
         $this->database = DATABASE;
     }
+    protected function __clone() { }
 
+    public function __wakeup()
+    {
+        throw new \Exception("Cannot unserialize a database singleton.");
+    }
+
+    public static function getInstance():Database{
+        if (!isset(self::$_instance)){
+            self::$_instance = new Database();
+        }
+        return self::$_instance;
+    }
     public function connect()
     {
         try{

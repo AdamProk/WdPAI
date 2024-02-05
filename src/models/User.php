@@ -1,17 +1,24 @@
 <?php
+namespace models;
 class User{
+    private $id_user;
     private $email;
     private $password;
     private $name;
     private $profile_picture;
+    private $role;
 
-    public function __construct(string $email,string $password,string $name,string $profile_picture){
+    public function __construct(int $id_user, string $email,string $password,string $name,string $profile_picture, string $role = null){
+        $this->id_user = $id_user;
         $this->email = $email;
         $this->password = $password;
         $this->name = $name;
         $this->profile_picture = $profile_picture;
+        $this->role= $role;
     }
-
+    public function getID(): int{
+        return $this->id_user;
+    }
     public function getEmail():string
     {
         return $this->email;
@@ -46,6 +53,9 @@ class User{
     public function setProfile_picture(string $profile_picture)
     {
         $this->profile_picture = $profile_picture;
+    }
+    public function getRole(): string{
+        return $this->role;
     }
 
 }
