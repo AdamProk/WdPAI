@@ -30,6 +30,9 @@ class RecipeController extends AppController
     }
 
     public function recipes(){
+        if (!isset($_COOKIE["id_user"])){
+            header("Location: login");
+        }
         $recipes = $this->recipeRepository->getRecipes();
         $me = $this->userRepository->getUserByID($_COOKIE["id_user"]);
         return $this->render('recipes', ['recipes'=> $recipes, 'me'=> $me]);
@@ -145,6 +148,9 @@ class RecipeController extends AppController
     }
 
     public function profile(){
+        if (!isset($_COOKIE["id_user"])){
+            header("Location: login");
+        }
         $recipes = $this->recipeRepository->getRecipesByUserID($_COOKIE["id_user"]);
         $me = $this->userRepository->getUserByID($_COOKIE["id_user"]);
         return $this->render('profile', ['recipes'=> $recipes, 'me'=> $me]);

@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <head>
     <link rel="stylesheet" type="text/css" href="public/css/style.css">
     <link rel="stylesheet" type="text/css" href="public/css/recipes.css">
@@ -9,6 +10,11 @@
     <title>Recipes</title>
 </head>
 <body>
+<?php
+        if (!isset($_COOKIE["id_user"]) ){
+            header("Location: login");
+        }
+?>
     <div class="navbar">
         <div class="profile_link">
             <button class="profile_button" onclick="redirectToProfile()">
@@ -21,7 +27,7 @@
             </button>
         </div>
         <div class="logout">
-            <button class="logout_button">Logout</button>
+            <button type="submit" id="logout" class="logout_button">Logout</button>
         </div>
     </div>
     <div class="container">
